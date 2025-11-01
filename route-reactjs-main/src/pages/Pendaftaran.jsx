@@ -1,16 +1,39 @@
 import { useState } from "react";
 
-export default function Registrasi() {
-  const [formData, setFormData] = useState({
-    nama: "",
-    username: "",
-    email: "",
-    telepon: "",
-    password: "",
-    ulangiPassword: "",
-    gender: "",
-  });
+// Menggunakan sedikit style inline untuk meniru background abu-abu dan padding
+const containerStyle = {
+  backgroundColor: '#f0f0f0',
+  padding: '20px',
+  fontFamily: 'sans-serif'
+};
 
+const formStyle = {
+  backgroundColor: '#f0f0f0',
+  padding: '15px',
+};
+
+const inputStyle = {
+  padding: '5px',
+  margin: '5px 0'
+};
+
+const buttonContainerStyle = {
+  paddingTop: '10px',
+};
+
+export default function Registrasi() {
+  // 1. State disesuaikan dengan field pada gambar
+  const initialFormData = {
+    firstName: "",
+    lastName: "",
+    dateOfBirth: "",
+    emailId: "",
+    mobileNumber: "",
+  };
+  
+  const [formData, setFormData] = useState(initialFormData);
+
+  // Fungsi ini tetap sama, karena bekerja secara dinamis
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -18,167 +41,114 @@ export default function Registrasi() {
     });
   };
 
+  // 2. Logika submit disederhanakan
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (formData.password !== formData.ulangiPassword) {
-      alert("Password dan konfirmasi password tidak sama!");
-      return;
-    }
-    alert(`Pendaftaran berhasil!\nNama: ${formData.nama}`);
-    setFormData({
-      nama: "",
-      username: "",
-      email: "",
-      telepon: "",
-      password: "",
-      ulangiPassword: "",
-      gender: "",
-    });
+    // Menampilkan semua data yang di-submit
+    alert(`Form Submitted!\n
+      First Name: ${formData.firstName}
+      Last Name: ${formData.lastName}
+      Date of Birth: ${formData.dateOfBirth}
+      Email id: ${formData.emailId}
+      Mobile Number: ${formData.mobileNumber}`);
+    
+    // Reset form setelah submit
+    setFormData(initialFormData);
+  };
+
+  // 3. Fungsi untuk handle tombol reset
+  const handleReset = () => {
+    setFormData(initialFormData);
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-400 via-purple-400 to-indigo-500 p-6">
-      <div className="bg-white shadow-2xl rounded-2xl w-full max-w-3xl p-8">
-        <h2 className="text-2xl font-bold text-gray-800 mb-6 text-center">
-          Form Pendaftaran
-        </h2>
+    <div style={containerStyle}>
+      <h2>HTML Form</h2>
 
-        <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-5">
-          {/* Nama */}
-          <div>
-            <label className="block text-sm font-semibold mb-1 text-gray-700">Nama Lengkap</label>
-            <input
-              type="text"
-              name="nama"
-              value={formData.nama}
-              onChange={handleChange}
-              required
-              className="w-full border border-gray-300 rounded-lg p-2.5 focus:border-indigo-500 focus:ring focus:ring-indigo-200"
-              placeholder="Masukkan nama lengkap"
-            />
-          </div>
-
-          {/* Username */}
-          <div>
-            <label className="block text-sm font-semibold mb-1 text-gray-700">Username</label>
-            <input
-              type="text"
-              name="username"
-              value={formData.username}
-              onChange={handleChange}
-              required
-              className="w-full border border-gray-300 rounded-lg p-2.5 focus:border-indigo-500 focus:ring focus:ring-indigo-200"
-              placeholder="Masukkan username"
-            />
-          </div>
-
-          {/* Email */}
-          <div>
-            <label className="block text-sm font-semibold mb-1 text-gray-700">Email</label>
-            <input
-              type="email"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
-              required
-              className="w-full border border-gray-300 rounded-lg p-2.5 focus:border-indigo-500 focus:ring focus:ring-indigo-200"
-              placeholder="Masukkan email"
-            />
-          </div>
-
-          {/* Nomor Telepon */}
-          <div>
-            <label className="block text-sm font-semibold mb-1 text-gray-700">Nomor Telepon</label>
-            <input
-              type="tel"
-              name="telepon"
-              value={formData.telepon}
-              onChange={handleChange}
-              required
-              className="w-full border border-gray-300 rounded-lg p-2.5 focus:border-indigo-500 focus:ring focus:ring-indigo-200"
-              placeholder="Masukkan nomor telepon"
-            />
-          </div>
-
-          {/* Password */}
-          <div>
-            <label className="block text-sm font-semibold mb-1 text-gray-700">Password</label>
-            <input
-              type="password"
-              name="password"
-              value={formData.password}
-              onChange={handleChange}
-              required
-              className="w-full border border-gray-300 rounded-lg p-2.5 focus:border-indigo-500 focus:ring focus:ring-indigo-200"
-              placeholder="Masukkan password"
-            />
-          </div>
-
-          {/* Ulangi Password */}
-          <div>
-            <label className="block text-sm font-semibold mb-1 text-gray-700">Ulangi Password</label>
-            <input
-              type="password"
-              name="ulangiPassword"
-              value={formData.ulangiPassword}
-              onChange={handleChange}
-              required
-              className="w-full border border-gray-300 rounded-lg p-2.5 focus:border-indigo-500 focus:ring focus:ring-indigo-200"
-              placeholder="Masukkan ulang password"
-            />
-          </div>
-
-          {/* Jenis Kelamin */}
-          <div className="md:col-span-2">
-            <label className="block text-sm font-semibold mb-2 text-gray-700">
-              Jenis Kelamin
-            </label>
-            <div className="flex gap-6">
-              <label className="flex items-center gap-2 text-gray-700">
+      {/* Menambahkan onReset pada form */}
+      <form onSubmit={handleSubmit} onReset={handleReset} style={formStyle}>
+        {/* 4. Menggunakan tabel untuk layout yang rapi */}
+        <table>
+          <tbody>
+            <tr>
+              <td><label htmlFor="firstName">First Name :</label></td>
+              <td>
                 <input
-                  type="radio"
-                  name="gender"
-                  value="Pria"
-                  checked={formData.gender === "Pria"}
+                  type="text"
+                  id="firstName"
+                  name="firstName"
+                  value={formData.firstName}
                   onChange={handleChange}
+                  style={inputStyle}
                   required
                 />
-                Pria
-              </label>
-              <label className="flex items-center gap-2 text-gray-700">
+              </td>
+            </tr>
+            <tr>
+              <td><label htmlFor="lastName">Last Name :</label></td>
+              <td>
                 <input
-                  type="radio"
-                  name="gender"
-                  value="Wanita"
-                  checked={formData.gender === "Wanita"}
+                  type="text"
+                  id="lastName"
+                  name="lastName"
+                  value={formData.lastName}
                   onChange={handleChange}
+                  style={inputStyle}
+                  required
                 />
-                Wanita
-              </label>
-              <label className="flex items-center gap-2 text-gray-700">
+              </td>
+            </tr>
+            <tr>
+              <td><label htmlFor="dateOfBirth">Date of Birth :</label></td>
+              <td>
                 <input
-                  type="radio"
-                  name="gender"
-                  value="Lainnya"
-                  checked={formData.gender === "Lainnya"}
+                  type="date"
+                  id="dateOfBirth"
+                  name="dateOfBirth"
+                  value={formData.dateOfBirth}
                   onChange={handleChange}
+                  style={inputStyle}
+                  required
                 />
-                Lainnya
-              </label>
-            </div>
-          </div>
+              </td>
+            </tr>
+            <tr>
+              <td><label htmlFor="emailId">Email id :</label></td>
+              <td>
+                <input
+                  type="email"
+                  id="emailId"
+                  name="emailId"
+                  value={formData.emailId}
+                  onChange={handleChange}
+                  style={inputStyle}
+                  required
+                />
+              </td>
+            </tr>
+            <tr>
+              <td><label htmlFor="mobileNumber">Mobile Number :</label></td>
+              <td>
+                <input
+                  type="tel"
+                  id="mobileNumber"
+                  name="mobileNumber"
+                  value={formData.mobileNumber}
+                  onChange={handleChange}
+                  style={inputStyle}
+                  required
+                />
+              </td>
+            </tr>
+          </tbody>
+        </table>
 
-          {/* Tombol */}
-          <div className="md:col-span-2 mt-4">
-            <button
-              type="submit"
-              className="w-full bg-gradient-to-r from-blue-500 to-purple-500 text-white font-semibold py-2.5 rounded-lg shadow-md hover:opacity-90 transition"
-            >
-              Daftar
-            </button>
-          </div>
-        </form>
-      </div>
+        {/* 5. Tombol Submit dan Reset */}
+        <div style={buttonContainerStyle}>
+          <button type="submit">SUBMIT</button>
+          <button type="reset" style={{ marginLeft: '10px' }}>RESET</button>
+        </div>
+      </form>
     </div>
   );
 }
