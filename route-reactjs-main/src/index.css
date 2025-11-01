@@ -1,99 +1,129 @@
-body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  margin: 0;
-  padding: 0;
-  background-color: #f7f7f7; 
-  color: #333333;
-  line-height: 1.6;
+/* -- Mengimpor Google Font 'Poppins' untuk tampilan yang lebih modern -- */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+/* -- Variabel Warna untuk kemudahan kustomisasi -- */
+:root {
+  --primary-gradient: linear-gradient(90deg, #4344e9 0%, #8f46e4 100%);
+  --background-color: #f8f9fa;
+  --card-background: #ffffff;
+  --text-dark: #212529;
+  --text-light: #ffffff;
+  --text-heading: #343a40;
+  --hover-color: #a749eb; /* Warna aksen untuk hover */
+  --shadow-soft: 0 8px 25px rgba(0, 0, 0, 0.07);
 }
 
+/* -- Style Dasar Body -- */
+body {
+  font-family: 'Poppins', sans-serif; /* Menggunakan font baru */
+  margin: 0;
+  padding: 0;
+  background-color: var(--background-color); 
+  color: var(--text-dark);
+  line-height: 1.7;
+}
+
+/* -- Style untuk Heading -- */
 h1, h2, h3, h4, h5, h6 {
   margin-top: 0.5em;
   margin-bottom: 0.5em;
-  color: #00a8a8; 
+  color: var(--text-heading); 
+  font-weight: 700;
 }
+
+/* Penyesuaian khusus untuk H1 agar lebih menonjol */
+h1 {
+    font-size: 2.5em;
+    /* Memberi efek gradien pada teks judul utama */
+    background: var(--primary-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
 
 hr {
   border: none;
-  border-top: 2px solid #e0e0e0;
-  margin: 20px 0;
+  border-top: 1px solid #dee2e6; /* Garis yang lebih halus */
+  margin: 25px 0;
 }
 
-
+/* -- Konten Utama (Area Putih) -- */
 main {
-    background-color: white; 
+    background-color: var(--card-background); 
     min-height: calc(100vh - 70px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); 
+    box-shadow: var(--shadow-soft); /* Bayangan yang lebih lembut */
     max-width: 1200px;
-    margin: 20px auto;
-    padding: 30px; 
-    border-radius: 12px; 
+    margin: 30px auto; /* Memberi jarak lebih dari atas */
+    padding: 40px; 
+    border-radius: 16px; /* Sudut yang lebih tumpul */
 }
 
-
+/* -- Navigasi Bar -- */
 nav {
-  background-color: #00a8a8; 
-  color: white;
-  padding: 15px 30px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  /* Gradien modern sebagai latar belakang */
+  background: var(--primary-gradient); 
+  padding: 15px 40px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
   display: flex;
-  gap: 25px;
-  max-width: 1200px;
-  margin: 0 auto;
-  border-radius: 12px 12px 0 0; 
-  
+  justify-content: flex-start; /* Memulai dari kiri */
+  gap: 30px;
 }
 
 nav a {
-  color: white;
+  color: var(--text-light);
   text-decoration: none;
   font-weight: 600;
-  padding: 5px 10px;
-  border-radius: 4px;
-  transition: background-color 0.3s, color 0.3s;
+  padding: 8px 15px;
+  border-radius: 8px;
+  transition: all 0.3s ease; /* Transisi untuk semua properti */
+  position: relative; /* Diperlukan untuk pseudo-element ::after */
+  top: 0;
 }
 
+/* -- Efek Hover pada Link Navigasi -- */
 nav a:hover {
-  background-color: #a8c823;
-  color: #333333;
+  background-color: rgba(255, 255, 255, 0.15); /* Latar belakang transparan saat disentuh */
+  transform: translateY(-2px); /* Sedikit terangkat saat disentuh */
 }
 
+/* -- Indikator Halaman Aktif -- */
 nav a.active { 
-    background-color: #a8c823;
-    color: #333333;
+    background-color: rgba(255, 255, 255, 0.15);
 }
 
+/* -- Styling Konten Generik -- */
 .page-container p {
-    margin-bottom: 10px;
+    margin-bottom: 15px;
 }
 .page-container p strong {
-    color: #555;
-    font-weight: bold;
+    color: var(--text-heading);
+    font-weight: 600;
 }
 .page-container ul {
     list-style: disc outside;
     padding-left: 30px;
 }
 
+/* -- Grid Galeri yang Ditingkatkan -- */
 .gallery-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 25px;
-    margin-top: 20px;
+    gap: 30px;
+    margin-top: 25px;
 }
 
 .gallery-item {
-    border: none; 
-    border-radius: 10px; 
+    border-radius: 12px; 
     overflow: hidden;
-    background-color: white;
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s, box-shadow 0.3s;
+    background-color: var(--card-background);
+    box-shadow: var(--shadow-soft);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .gallery-item:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+    transform: translateY(-8px); /* Efek mengangkat lebih terasa */
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
 }
 
 .gallery-item img {
@@ -105,13 +135,15 @@ nav a.active {
 
 .gallery-item p {
     text-align: center;
-    margin: 12px 0;
+    margin: 15px 0;
     font-size: 1em;
     font-weight: 600;
-    color: #00a8a8; 
+    color: var(--text-dark); /* Warna teks disesuaikan */
 }
 
+/* -- Style untuk iframe (misal: Google Maps) -- */
 iframe {
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    box-shadow: var(--shadow-soft);
+    border: none;
 }
