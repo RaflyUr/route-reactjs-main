@@ -10,6 +10,8 @@ export default function App() {
         <Link to="/galeri">Galeri</Link>
         <Link to="/hubungi-kami">Hubungi Kami</Link>
         <Link to="/pendaftaran">Pendaftaran</Link>
+        <Link to="/list">List</Link>
+        <Link to="/product">Product</Link>
       </nav>
       <main style={{padding:24}}>
         <Outlet />

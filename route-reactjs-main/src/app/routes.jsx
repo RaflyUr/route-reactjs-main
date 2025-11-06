@@ -7,6 +7,8 @@ import Profil from "../pages/Profil";
 import Galeri from "../pages/Galeri";
 import HubungiKami from "../pages/HubungiKami";
 import Pendaftaran from "../pages/Pendaftaran";
+import List from "../pages/List";
+import ProductForm from "../pages/Product";
 
 
 export const router = createBrowserRouter([
@@ -19,7 +21,9 @@ export const router = createBrowserRouter([
       { path: "profil", element: <Profil /> },
       { path: "galeri", element: <Galeri /> },
       { path: "hubungi-kami", element: <HubungiKami /> },
-      { path: "pendaftaran", element: <Pendaftaran /> }
+      { path: "pendaftaran", element: <Pendaftaran /> },
+      { path: "list", element: <List /> },
+      { path: "product", element: <ProductForm/> },
     ],
   },
 ]);
